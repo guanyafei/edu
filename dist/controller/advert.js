@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.addAdvert = addAdvert;
 function addAdvert(req, res, next) {
-	console.log('aaaaaaaa');
+	console.log(req.body);
 }

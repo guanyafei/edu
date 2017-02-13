@@ -16,6 +16,14 @@ var _router = require('./router');
 
 var _router2 = _interopRequireDefault(_router);
 
+var _querystring = require('querystring');
+
+var _querystring2 = _interopRequireDefault(_querystring);
+
+var _bodyParse = require('./middleware/body-parse');
+
+var _bodyParse2 = _interopRequireDefault(_bodyParse);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
@@ -31,15 +39,8 @@ _nunjucks2.default.configure('./views', {
 app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');*/
 //解析请求数据
-var data = '';
-app.use(function (req, res, next) {
-    req.on('data', function (chunk) {
-        data += chunk;
-    });
-    req.on('end', function () {
-        console.log(data);
-    });
-});
+
+app.use(_bodyParse2.default);
 
 //挂载路由
 app.use(_router2.default);
