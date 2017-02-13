@@ -9,7 +9,28 @@ export function showAddPage(req, res, next) {
 }
 //展示广告管理页
 export function showListPage(req, res, next) {
-    res.render('advert_list.html');
+    const page = Number.parseInt(req.query.page, 10);
+    const pageSize = 5;
+    advertModel
+        .find()
+        .skip((page - 1) * pageSize)
+        .limit(pageSize)
+        .exec((err, adverts) => {
+            if (err) {
+                return next(err);
+            }
+           advertModel.count((err,count)=>{
+            if(err){
+                return next(err);
+            }
+            const totalPage = Math.ceil(count/pageSize);
+             res.render('advert_list.html', {
+                adverts,
+                totalPage,
+                page
+            });
+           });
+        });
 }
 //add广告
 export function addAdvert(req, res, next) {

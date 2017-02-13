@@ -2,7 +2,8 @@ import express from 'express';
 import config from './config';
 import nunjucks from 'nunjucks';
 import indexRouter from './routes/indexRouter';
-import advertRouter from './routes/advertRouter.js';
+import managerRouter from './routes/managerRouter';
+import advertRouter from './routes/advertRouter';
 import bodyParse from './middleware/body-parse';
 import errLog from './middleware/err-log';
 
@@ -26,7 +27,7 @@ app.use(bodyParse);
 //挂载路由
 app.use(indexRouter);
 app.use(advertRouter);
-
+app.use(managerRouter);
 //处理错误
 app.use(errLog);
 
