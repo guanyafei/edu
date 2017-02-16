@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\guanyafei\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add moment
+  C:\Program Files\nodejs\node.exe C:\Users\guanyafei\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add cookie-parser
 
 PATH: 
   C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;D:\HTML\VisualSVN Server\bin;C:\Program Files\TortoiseSVN\bin;D:\HTML\Git\cmd;C:\Users\guanyafei\AppData\Roaming\npm;D:\HTML\MongoDB\Server\3.4\bin;
@@ -37,6 +37,7 @@ npm manifest:
       "font-awesome": "^4.7.0",
       "formidable": "^1.1.1",
       "jquery": "^3.1.1",
+      "moment": "^2.17.1",
       "mongodb": "^2.2.22",
       "mongoose": "^4.8.1",
       "nprogress": "^0.2.0",
@@ -1361,6 +1362,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
     dependencies:
       minimist "0.0.8"
+  
+  moment@^2.17.1:
+    version "2.17.1"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
   
   mongodb-core@2.1.7:
     version "2.1.7"

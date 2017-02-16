@@ -1,3 +1,8 @@
 export function showIndex(req, res) {
-    res.render('index.html');
+	if(!req.session.manager){
+		return res.redirect('/advert/login');
+	}
+    res.render('index.html', {
+        manager: req.session.manager
+    });
 }

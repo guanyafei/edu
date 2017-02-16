@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://127.0.0.1:27017/edu')
-
 const advertSchema = mongoose.Schema({
   title: { type: String, required: true },
   image: { type: String, required: true },

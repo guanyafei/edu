@@ -1,8 +1,11 @@
 import express from 'express';
 import * as managerCtr from '../controllers/managerController';
-const Router =express.Router();
+const router = express.Router();
 
-Router
-    .get('/advert/register',managerCtr.showRegister);
+router
+    .get('/advert/register', managerCtr.showRegister)
+    .post('/advert/register', managerCtr.doRegister)
+    .get('/advert/login', managerCtr.showLogin)
+    .post('/advert/login', managerCtr.doLogin);
 
-    export default Router; 
+export default router;

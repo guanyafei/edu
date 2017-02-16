@@ -1,39 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="node_modules/nprogress/nprogress.css">
-    <link rel="stylesheet" href="./less/index.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/node_modules/nprogress/nprogress.css">
+    <link rel="stylesheet" href="/public/less/index.css">
 </head>
+
 <body>
     <!-- 登录 -->
     <div class="login">
         <div class="login-wrap">
             <div class="avatar">
-                <img src="./uploads/monkey.png" class="img-circle" alt="">
+                <img src="/public/uploads/monkey.png" class="img-circle" alt="">
             </div>
-            <form action="" class="col-md-offset-1 col-md-10">
+            <form action="/advert/login" method="post" class="col-md-offset-1 col-md-10">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="用户名">
+                    <input type="text" id="username" name="username" class="form-control" value="{{ username }}" placeholder="用户名">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-key"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="密码">
+                    <input type="password" name="password" class="form-control" placeholder="密码">
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
             </form>
         </div>
     </div>
-    
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript">
+    function getCookies() {
+        var cookies = {};
+        document.cookie.split(';').forEach(function(cookie) {
+            if (cookie) {
+                var item = cookie.split('=');
+                cookies[item[0].trim()] = item[1].trim();
+            }
+        });
+        return cookies;
+    }
+    var cookies = getCookies();
+    console.log(cookies);
+    if (cookies['username']) {
+        $('#username').val(cookies['username']);
+    }
+    $('form').on('submit', function(e) {
+        $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: 'json'
+            })
+            .then(function(data) {
+                if (data.err_code === 0) {
+                    document.cookie = 'username=' + $('#username').val();
+                    window.location.href = '/';
+                } else if (data.err_code === 1) {
+                    window.alert('用户名或者密码错误');
+                }
+            });
+        return false;
+    });
+    </script>
 </body>
+
 </html>

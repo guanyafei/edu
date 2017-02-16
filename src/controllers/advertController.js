@@ -1,4 +1,4 @@
-import Advert from '../models/advertModel';
+import {Advert} from '../models';
 import formidable from 'formidable';
 import config from '../config';
 import { basename } from 'path';

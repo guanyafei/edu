@@ -6,6 +6,8 @@ import managerRouter from './routes/managerRouter';
 import advertRouter from './routes/advertRouter';
 import bodyParse from './middleware/body-parse';
 import errLog from './middleware/err-log';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 
 const app = express();
 
@@ -24,6 +26,13 @@ app.set('view engine', 'html');*/
 //解析请求数据
 app.use(bodyParse);
 
+app.use(cookieParser());
+
+app.use(session({
+	secret:'gyf',
+	resave:'false',
+	saveUninitialized: true
+}));
 //挂载路由
 app.use(indexRouter);
 app.use(advertRouter);
